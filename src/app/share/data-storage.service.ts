@@ -32,4 +32,12 @@ export class DataStorageService{
         })
       );
   }
+
+  updateQuanly2DB(){
+    const quanlys = this.filmService.getFilms('quanlys');
+    this.http.put(
+      this.firebaseStoragePath+'quanlys.json',
+      quanlys
+    ).subscribe(response =>{console.log(response)});
+  }
 }

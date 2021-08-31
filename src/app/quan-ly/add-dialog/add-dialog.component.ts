@@ -3,6 +3,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FilmService} from "../../share/film.service";
 import {FilmModel} from "../../share/film.model";
+import {DataStorageService} from "../../share/data-storage.service";
 
 @Component({
   selector: 'app-add-dialog',
@@ -12,7 +13,8 @@ import {FilmModel} from "../../share/film.model";
 export class AddDialogComponent implements OnInit {
   addForm: FormGroup;
   constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
-              private filmService: FilmService) { }
+              private filmService: FilmService,
+              private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -29,6 +31,7 @@ export class AddDialogComponent implements OnInit {
       this.addForm.value['filmType']
     );
     this.filmService.addFilmToQuanLy(newFilm);
+    this.dataStorageService.updateQuanly2DB();
     this.dialogRef.close();
   }
   onCancel(){
