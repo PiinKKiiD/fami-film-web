@@ -66,9 +66,18 @@ export class FilmService{
     this.filmsChanged.next(this.quanlys.slice());
   }
 
+  updateFilmToQuanLy(film: FilmModel, id: number){
+    this.quanlys[id] = film;
+    this.filmsChanged.next(this.quanlys.slice());
+  }
+
   delFilmFromQuanLy(index: number){
     this.quanlys.splice(index,1);
     this.filmsChanged.next(this.quanlys.slice());
+  }
+
+  getFilmFromQuanLy(index: number){
+    return this.quanlys.slice()[index];
   }
 
   getFilmHots(filmType: string){
