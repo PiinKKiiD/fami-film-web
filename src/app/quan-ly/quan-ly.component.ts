@@ -41,7 +41,8 @@ export class QuanLyComponent implements OnInit {
     const matDialogConf = new MatDialogConfig();
     matDialogConf.disableClose = true;
     matDialogConf.autoFocus = true;
-    this.matDialog.open(AddDialogComponent, matDialogConf);
+    const dialogRef = this.matDialog.open(AddDialogComponent, matDialogConf);
+    dialogRef.afterClosed().subscribe(() => { this.getAllRecords() } );
   }
 
   onDel(id: number){

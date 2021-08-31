@@ -1,3 +1,4 @@
+/*
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddDialogComponent } from './add-dialog.component';
@@ -23,3 +24,4 @@ describe('AddDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+*/
