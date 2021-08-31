@@ -40,33 +40,46 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="header" style="text-align: center;">
-        <h4 class="modal-title">Thêm mới film</h4>
+        <h4 class="title">Thêm mới film</h4>
       </div>
-      <form>
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="filmName">Tên</label>
-          <input class="form-control" type="text" placeholder=" " id="filmName">
+          <input class="form-control"
+                 formControlName="filmName"
+                 type="text"
+                 placeholder=" " id="filmName">
         </div>
 
         <div class="form-group">
           <label for="filmType">Thể loại</label>
-          <input class="form-control" type="text" placeholder=" " id="filmType">
+          <input class="form-control"
+                 formControlName="filmType"
+                 type="text"
+                 placeholder=" " id="filmType">
         </div>
 
         <div class="form-group">
           <label for="filmNote">Ghi chú</label>
           <textarea class="form-control"
+                    formControlName="filmNote"
                     type="text" placeholder=" "
                     id="filmNote"
                     row="10"></textarea>
         </div>
-      </form>
 
-      <div class="footer" style="text-align: center;">
-        <button class="btn btn-primary" style="margin-right: 10px;">Thêm</button>
-        <button class="btn btn-primary"
-                style="margin-left: 10px; background-color: white; color:#3898EC; border: 1px solid #3898EC;">Trở về</button>
-      </div>
+        <div class="footer" style="text-align: center;">
+          <button class="btn btn-primary"
+                  [disabled]="!addForm.valid"
+                  type="submit"
+                  style="margin-right: 10px;">Thêm</button>
+          <button class="btn btn-primary"
+                  style="margin-left: 10px; background-color: white; color:#3898EC; border: 1px solid #3898EC;"
+                  type="button"
+                  (click)="onCancel()"
+          >Trở về</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

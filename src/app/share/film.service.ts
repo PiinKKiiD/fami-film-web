@@ -61,6 +61,12 @@ export class FilmService{
     }
   }
 
+  addFilmToQuanLy(film: FilmModel){
+    this.quanlys.push(film);
+    this.filmsChanged.next(this.quanlys.slice());
+
+  }
+
   getFilmHots(filmType: string){
     let startId=0;
     let endId =1;
