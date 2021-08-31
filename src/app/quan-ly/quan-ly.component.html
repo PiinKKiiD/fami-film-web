@@ -1,0 +1,91 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-11"> <h3>Danh sách phim</h3></div>
+    <div class="col-xs-1" style="margin-top: 10px; margin-left:-20px; ">
+      <button id="btn-Them" class="btn btn-primary" (click)="onAdd()"
+      >Thêm</button></div>
+  </div>
+
+
+  <table class="table table-bordered borderless">
+    <thead>
+    <tr class="bTop">
+      <th scope="col" class="bLeft">ID</th>
+      <th scope="col">Tên</th>
+      <th scope="col">Thể loại</th>
+      <th scope="col">Đánh giá</th>
+      <th scope="col">Ngày tạo</th>
+      <th scope="col">Ghi chú</th>
+      <th scope="col" class="bRight">Thao tác</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let quanly of quanlys; let id=index">
+      <th scope="row" class="bLeft">{{id}}</th>
+      <td>{{quanly.name}}</td>
+      <td>{{quanly.type}}</td>
+      <td>{{quanly.rate/10}}</td>
+      <td>{{quanly.createDate | date}}</td>
+      <td>{{quanly.note}}</td>
+      <td class="bRight">
+          <ul>
+            <li style="display: inline; margin-left: -40px;">
+              <img src="assets/images/refresh_icon.png"
+                   style="max-height: 30px; margin-right: 10px;" alt="">
+            </li>
+            <li style="display: inline;">
+              <img src="assets/images/delete_icon.png"
+                   style="max-height: 30px" alt="">
+            </li>
+          </ul>
+      </td>
+    </tr>
+
+
+    </tbody>
+  </table>
+
+</div>
+
+<!--<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="modal fade" id="myModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Thêm mới film</h4>
+            </div>
+
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="filmName">Tên</label>
+                  <input class="form-control" type="text" placeholder="Add FilmName" id="filmName">
+                </div>
+
+                <div class="form-group">
+                  <label for="filmType">Thể loại</label>
+                  <input class="form-control" type="text" placeholder="Add FilmType" id="filmType">
+                </div>
+
+                <div class="form-group">
+                  <label for="filmNote">Ghi chú</label>
+                  <input class="form-control" type="text" placeholder="Add FilmNote" id="filmNote">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary">Thêm</button>
+              <button class="btn btn-primary" data-dismiss="modal">Trở về</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--src="https://www.freeiconspng.com/uploads/blue-refresh-icon-png-6.png"-->
