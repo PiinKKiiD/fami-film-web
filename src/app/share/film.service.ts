@@ -64,7 +64,11 @@ export class FilmService{
   addFilmToQuanLy(film: FilmModel){
     this.quanlys.push(film);
     this.filmsChanged.next(this.quanlys.slice());
+  }
 
+  delFilmFromQuanLy(index: number){
+    this.quanlys.splice(index,1);
+    this.filmsChanged.next(this.quanlys.slice());
   }
 
   getFilmHots(filmType: string){

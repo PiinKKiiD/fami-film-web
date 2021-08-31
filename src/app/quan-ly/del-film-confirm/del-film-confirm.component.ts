@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DataStorageService} from "../../share/data-storage.service";
+import {FilmService} from "../../share/film.service";
 
 @Component({
   selector: 'app-del-film-confirm',
@@ -7,12 +9,24 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./del-film-confirm.component.css']
 })
 export class DelFilmConfirmComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<DelFilmConfirmComponent>) { }
+  index: number;
+  constructor(public dialogRef: MatDialogRef<DelFilmConfirmComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: number,
+              private dataStorageService: DataStorageService,
+              private filmService: FilmService) {
+    this.index = data['index'];
+  }
 
   ngOnInit(): void {
   }
 
   onCancel(){
+    this.dialogRef.close();
+  }
+
+  onDelete(){
+    this.filmService.delFilmFromQuanLy(this.index);
+    this.dataStorageService.updateQuanly2DB();
     this.dialogRef.close();
   }
 

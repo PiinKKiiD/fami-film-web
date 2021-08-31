@@ -56,6 +56,6 @@ import { DelFilmConfirmComponent } from './quan-ly/del-film-confirm/del-film-con
   ],
   providers: [FilmService],
   bootstrap: [AppComponent],
-  entryComponents: [AddDialogComponent],
+  entryComponents: [AddDialogComponent, DelFilmConfirmComponent],
 })
 export class AppModule { }
