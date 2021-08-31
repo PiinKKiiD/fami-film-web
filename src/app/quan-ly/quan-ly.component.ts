@@ -5,6 +5,7 @@ import {FilmService} from "../share/film.service";
 import {DataStorageService} from "../share/data-storage.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddDialogComponent} from "./add-dialog/add-dialog.component";
+import {DelFilmConfirmComponent} from "./del-film-confirm/del-film-confirm.component";
 
 @Component({
   selector: 'app-quan-ly',
@@ -15,6 +16,7 @@ export class QuanLyComponent implements OnInit {
 
   quanlys : FilmModel[] = [];
   subscription: Subscription;
+  id : number;
   constructor(private filmService : FilmService,
               private dataStorageService: DataStorageService,
               private matDialog: MatDialog) {
@@ -39,6 +41,13 @@ export class QuanLyComponent implements OnInit {
     matDialogConf.disableClose = true;
     matDialogConf.autoFocus = true;
     this.matDialog.open(AddDialogComponent, matDialogConf);
+  }
+
+  onDel(id: number){
+    const matDialogConf = new MatDialogConfig();
+    matDialogConf.disableClose = true;
+    //matDialogConf.autoFocus = true;
+    this.matDialog.open(DelFilmConfirmComponent, matDialogConf);
   }
 
 

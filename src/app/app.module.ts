@@ -23,6 +23,7 @@ import {FilmService} from "./share/film.service";
 import { PlaceholderDirective } from "./share/Placeholder/placeholder.directive";
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddDialogComponent } from './quan-ly/add-dialog/add-dialog.component';
+import { DelFilmConfirmComponent } from './quan-ly/del-film-confirm/del-film-confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { AddDialogComponent } from './quan-ly/add-dialog/add-dialog.component';
     FooterComponent,
     PlaceholderDirective,
     AddDialogComponent,
+    DelFilmConfirmComponent,
   ],
   imports: [
     BrowserModule,
