@@ -40,9 +40,10 @@ export class UpdFilmComponent implements OnInit {
   }
 
   private initForm(){
-    let filmName = '';
-    let filmType = '';
-    let filmNote = '';
+    let newFilm = this.filmService.getFilmFromQuanLy(this.index);
+    let filmName = newFilm.name;
+    let filmType = newFilm.type;
+    let filmNote = newFilm.note;
     this.addForm = new FormGroup({
       'filmName': new FormControl(filmName, Validators.required),
       'filmType': new FormControl(filmType, Validators.required),

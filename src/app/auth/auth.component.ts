@@ -45,6 +45,7 @@ export class AuthComponent implements OnDestroy{
       authObs =  this.authService.signup(email,password);
     }
     authObs.subscribe(resData =>{
+      console.log('...',resData);
       this.isLoading = false;
       this.router.navigate(['/phim-moi']);
     }, erMessage => {
