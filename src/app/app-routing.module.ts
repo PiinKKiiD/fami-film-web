@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import { PhimMoiComponent } from './phim-moi/phim-moi.component';
 import { PhimBoComponent} from "./phim-bo/phim-bo.component";
 import { PhimLeComponent} from "./phim-le/phim-le.component";
-import { QuanLyComponent} from "./quan-ly/quan-ly.component";
 import {PhimHoatHinhComponent} from "./phim-hoat-hinh/phim-hoat-hinh.component";
 import {AuthGuard} from "./auth/auth.guard";
 
@@ -13,13 +12,14 @@ const routes: Routes = [
   { path: 'phim-le', component: PhimLeComponent, canActivate: [AuthGuard]},
   { path: 'phim-bo', component: PhimBoComponent, canActivate: [AuthGuard]},
   { path: 'phim-hoat-hinh', component: PhimHoatHinhComponent, canActivate: [AuthGuard]},
-  { path: 'quan-ly', component: QuanLyComponent, canActivate: [AuthGuard]},
+  { path: 'quan-ly',
+    loadChildren: () => import('./quan-ly/quan-ly.module').then(m=>m.QuanLyModule), canActivate: [AuthGuard]},
   {path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m=>m.AuthModule)},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
