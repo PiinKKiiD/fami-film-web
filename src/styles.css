@@ -7,4 +7,19 @@ body { margin: 0;
   color: white;
   overflow-y:scroll;}
 
+.blue-white-btn{
+  width: 101px;
+  height: 36px;
 
+  background: #3898EC;
+  border-radius: 5px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+}

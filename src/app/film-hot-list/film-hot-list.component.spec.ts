@@ -2,9 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilmHotListComponent } from './film-hot-list.component';
 
-/*describe('FilmHotListComponent', () => {
+describe('FilmHotListComponent', () => {
   let component: FilmHotListComponent;
   let fixture: ComponentFixture<FilmHotListComponent>;
+
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,4 +24,4 @@ import { FilmHotListComponent } from './film-hot-list.component';
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});*/
+});

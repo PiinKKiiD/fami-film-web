@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilmListComponent } from './film-list.component';
 
-/*describe('FilmListComponent', () => {
+describe('FilmListComponent', () => {
   let component: FilmListComponent;
   let fixture: ComponentFixture<FilmListComponent>;
 
@@ -22,4 +22,10 @@ import { FilmListComponent } from './film-list.component';
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});*/
+
+  it('should assign filmCategory as phim bo moi as default', () => {
+    const filmCategory = component.filmCategory;
+    expect(filmCategory).toBe('Phim bộ mới');
+  });
+
+});

@@ -25,6 +25,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddDialogComponent } from './quan-ly/add-dialog/add-dialog.component';
 import { DelFilmConfirmComponent } from './quan-ly/del-film-confirm/del-film-confirm.component';
 import { UpdFilmComponent } from './quan-ly/upd-film/upd-film.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,8 @@ import { UpdFilmComponent } from './quan-ly/upd-film/upd-film.component';
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
   ],
   providers: [FilmService],
   bootstrap: [AppComponent],

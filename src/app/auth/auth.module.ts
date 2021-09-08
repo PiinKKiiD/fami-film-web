@@ -6,6 +6,8 @@ import { RouterModule } from "@angular/router";
 import { AuthComponent } from "./auth.component";
 import {AlertComponent} from "../share/alert/alert.component";
 import {LoadingSpinnerComponent} from "../share/loading-spinner/loading-spinner.component";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations:[AuthComponent, AlertComponent, LoadingSpinnerComponent],
@@ -15,6 +17,8 @@ import {LoadingSpinnerComponent} from "../share/loading-spinner/loading-spinner.
     RouterModule.forChild([
       {path: '', component: AuthComponent}
     ]),
+    MatButtonModule,
+    MatInputModule,
     //SharedModule,
   ]
 })

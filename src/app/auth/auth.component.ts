@@ -3,7 +3,6 @@ import {AuthResponseData, AuthService} from "./auth.service";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
-import {AlertComponent} from "../share/alert/alert.component";
 import {PlaceholderDirective} from "../share/Placeholder/placeholder.directive";
 
 
@@ -23,9 +22,7 @@ export class AuthComponent implements OnDestroy{
   constructor(
     private authService: AuthService,
     private router:Router,
-    private componentFactoryResolver: ComponentFactoryResolver,
-  ) {
-  }
+  ) {}
 
   onSwitchMode(){
     this.isLoginMode =!this.isLoginMode;
@@ -51,7 +48,6 @@ export class AuthComponent implements OnDestroy{
     }, erMessage => {
       console.log(erMessage);
       this.isLoading = false;
-      //this.showErrorAlert(erMessage);
       this.error= erMessage;
 
     });
@@ -62,7 +58,7 @@ export class AuthComponent implements OnDestroy{
     this.error = null;
   }
 
-  private showErrorAlert(message: string ){
+/*  private showErrorAlert(message: string ){
     //const alertComp = new AlertComponent();
     const alertCmpFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
     const hostViewContainerRef = this.alertHost.viewContainerRef;
@@ -74,7 +70,7 @@ export class AuthComponent implements OnDestroy{
       this.closeSub.unsubscribe();
       hostViewContainerRef.clear();
     })
-  }
+  }*/
 
   ngOnDestroy(){
     if(this.closeSub){

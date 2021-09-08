@@ -15,7 +15,7 @@ export class FilmHotItemComponent implements OnInit {
 
   }
 
-  getRate(film: FilmModel){
+  getRate(){
     if(this.filmhot.rate/10 <= 2)
       this.starts =1;
     else if( this.filmhot.rate/10 <= 4 && this.filmhot.rate/10 > 2)
