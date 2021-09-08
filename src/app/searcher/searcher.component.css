@@ -10,5 +10,12 @@
   color: #FFFFFF;
 }
 #inputsm{
-  width: 108px;
+  margin-top: 8px;
+  width: 100%;
+  color: black;
+  border-radius: 5px;
+  background-color: white;
+  height: 30px;
+  padding-left: 10px;
+  font-size: 14px;
 }

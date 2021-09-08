@@ -14,7 +14,7 @@ import {UpdFilmComponent} from "./upd-film/upd-film.component";
   styleUrls: ['./quan-ly.component.css']
 })
 export class QuanLyComponent implements OnInit {
-
+  displayedColumns = ['id','name', 'type', 'createDate', 'rate', 'note', 'acts']
   quanlys : FilmModel[] = [];
   subscription: Subscription;
   id : number;

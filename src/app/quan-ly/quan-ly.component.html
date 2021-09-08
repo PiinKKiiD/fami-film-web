@@ -7,8 +7,60 @@
       >Thêm</button></div>
   </div>
 
+  <table mat-table [dataSource]="quanlys" class="mat-elevation-z8 demo-table">
 
-  <table class="table table-bordered borderless">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="label-table">ID</th>
+      <td mat-cell *matCellDef="let id=index" class="content-table">{{id}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name" class="row-table">
+      <th mat-header-cell *matHeaderCellDef class="label-table">Tên</th>
+      <td mat-cell *matCellDef="let element" class="content-table">{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef class="label-table">Thể loại</th>
+      <td mat-cell *matCellDef="let element" class="content-table">{{element.type}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef class="label-table">Đánh giá</th>
+      <td mat-cell *matCellDef="let element" class="content-table">{{element.rate / 10}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="createDate">
+      <th mat-header-cell *matHeaderCellDef class="label-table">Ngày tạo</th>
+      <td mat-cell *matCellDef="let element" class="content-table">{{element.createDate | date}}</td>
+    </ng-container>
+    <ng-container matColumnDef="note">
+      <th mat-header-cell *matHeaderCellDef class="label-table">Ghi chú</th>
+      <td mat-cell *matCellDef="let element" class="content-table">{{element.note}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acts">
+      <th mat-header-cell *matHeaderCellDef class="label-table">Thao tác</th>
+      <td mat-cell *matCellDef="let id=index">
+        <ul>
+          <li style="display: inline; margin-left: -40px;">
+            <img src="assets/images/refresh_icon.png"
+                 style="max-height: 30px; margin-right: 10px;" alt="" (click)="onUpdate(id)">
+          </li>
+          <li style="display: inline;">
+            <img src="assets/images/delete_icon.png"
+                 style="max-height: 30px" alt="" (click)="onDel(id)">
+          </li>
+        </ul>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+
+  <!--<table class="table table-bordered borderless">
     <thead>
     <tr class="bTop">
       <th scope="col" class="bLeft">ID</th>
@@ -45,7 +97,7 @@
 
 
     </tbody>
-  </table>
+  </table>-->
 
 </div>
 

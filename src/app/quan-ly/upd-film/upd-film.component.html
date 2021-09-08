@@ -5,37 +5,41 @@
         <h4 class="title">Cập nhật film</h4>
       </div>
       <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="filmName">Tên</label>
-          <input class="form-control"
-                 formControlName="filmName"
-                 type="text"
-                 placeholder=" " id="filmName">
-        </div>
+        <p class="fullwidth-input">
+          <mat-form-field [style.width.px]=450 appearance="outline">
+            <mat-label>Tên</mat-label>
+            <input matInput
+                   formControlName="filmName"
+                   type="text"
+                   placeholder=" " id="filmName">
+          </mat-form-field>
+        </p>
+        <p class="fullwidth-input">
+          <mat-form-field [style.width.px]=450 appearance="outline">
+            <mat-label>Thể loại</mat-label>
+            <input matInput
+                   formControlName="filmType"
+                   type="text"
+                   placeholder=" " id="filmType">
+          </mat-form-field>
+        </p>
 
-        <div class="form-group">
-          <label for="filmType">Thể loại</label>
-          <input class="form-control"
-                 formControlName="filmType"
-                 type="text"
-                 placeholder=" " id="filmType">
-        </div>
-
-        <div class="form-group">
-          <label for="filmNote">Ghi chú</label>
-          <textarea class="form-control"
-                    formControlName="filmNote"
-                    type="text" placeholder=" "
-                    id="filmNote"
-                    row="10"></textarea>
-        </div>
+        <p class="fullwidth-input">
+          <mat-form-field [style.width.px]=450 appearance="outline">
+            <mat-label>Ghi chú</mat-label>
+            <input matInput
+                   formControlName="filmNote"
+                   type="text"
+                   placeholder=" " id="filmNote">
+          </mat-form-field>
+        </p>
 
         <div class="footer" style="text-align: center;">
-          <button class="btn btn-primary"
+          <button mat-raised-button class="blue-white-btn"
                   [disabled]="!addForm.valid"
                   type="submit"
                   style="margin-right: 10px;">Cập nhật</button>
-          <button class="btn btn-primary"
+          <button mat-raised-button class="blue-white-btn"
                   style="margin-left: 10px; background-color: white; color:#3898EC; border: 1px solid #3898EC;"
                   type="button"
                   (click)="onCancel()"

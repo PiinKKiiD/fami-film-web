@@ -6,6 +6,10 @@ import {AddDialogComponent} from "./add-dialog/add-dialog.component";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ShareModule} from "../share/share.module";
+import {MatTableModule} from "@angular/material/table";
+import {CommonModule} from "@angular/common";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations:[
@@ -21,6 +25,10 @@ import {ShareModule} from "../share/share.module";
     RouterModule.forChild([
       {path: '', component: QuanLyComponent}
     ]),
+    MatTableModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports:[
     QuanLyComponent,
