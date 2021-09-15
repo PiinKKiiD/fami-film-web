@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FilmModel} from "../share/film.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-film-hot-list',
@@ -10,6 +11,7 @@ export class FilmHotListComponent implements OnInit {
 
   constructor() { }
   @Input() filmhots: FilmModel[] = [];
+  @Input() filmhots$: Observable<FilmModel[]>;
   ngOnInit(): void {
   }
 

@@ -35,8 +35,7 @@ describe('PhimHoatHinhComponent', () => {
   const filmService = {
     filmsChanged: new Subject<FilmModel[]>(),
 
-    getFilmHots(type: string){return phimhots; }
-    ,
+    getFilmHots(type: string){return phimhots; },
     getFilms(type: string){
       return [];
     }

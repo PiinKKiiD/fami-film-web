@@ -15,29 +15,12 @@ export class DataStorageService{
               private authService: AuthService) {
   }
 
-  fetchFilm(filmType: string){
-    return this.http.get<FilmModel[]>(
-      this.firebaseStoragePath+filmType+'.json',
-    )
-      .pipe(
-        map(films =>{
-          return films.map(film => {
-            return {
-              ...film,
-            };
-          });
-        }),
-        tap(films=>{
-          this.filmService.setFilms(films, filmType);
-        })
-      );
-  }
 
   updateQuanly2DB(){
-    const quanlys = this.filmService.getFilms('quanlys');
+    /*const quanlys = this.filmService.getFilms('quanlys');
     this.http.put(
       this.firebaseStoragePath+'quanlys.json',
       quanlys
-    ).subscribe(response =>{console.log(response)});
+    ).subscribe(response =>{console.log(response)});*/
   }
 }

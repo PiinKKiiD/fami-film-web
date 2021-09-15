@@ -4,7 +4,7 @@
   </div>
 
   <div class="row" style="width: 820px;">
-    <div class="col-xs-2" *ngFor="let f of films" style="width: 205px;">
+    <div class="col-xs-2" *ngFor="let f of films$ | async" style="width: 205px;">
       <app-film-list-item [film] = f></app-film-list-item>
     </div>
 

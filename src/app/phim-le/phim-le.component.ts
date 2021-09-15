@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FilmModel} from "../share/film.model";
-import {range, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {FilmService} from "../share/film.service";
-import {DataStorageService} from "../share/data-storage.service";
 
 @Component({
   selector: 'app-phim-le',
@@ -11,31 +10,17 @@ import {DataStorageService} from "../share/data-storage.service";
 })
 export class PhimLeComponent implements OnInit {
 
-  phimles : FilmModel[] = [];
-  phimhots : FilmModel[] = [];
-  subscription: Subscription;
-  constructor(private filmService : FilmService,
-              private dataStorageService: DataStorageService) { }
+  phimles$ : Observable<FilmModel[]>;
+  phimhots$ : Observable<FilmModel[]>;
+  constructor(private filmService : FilmService) { }
 
   ngOnInit(): void {
-    this.phimles = this.filmService.getFilms('phimles');
-    this.phimhots = this.filmService.getFilmHots('phimles');
-    if(this.phimles.length == 0) {
-      this.dataStorageService.fetchFilm('phimles').subscribe();
-      this.subscription = this.filmService.filmsChanged
-        .subscribe(
-          (films: FilmModel[]) => {
-            this.phimles = films
-          }
-        );
-    }
+    this.getPhimLes$();
 
   }
-  onGetFilmHots(){
-    if( this.phimhots.length == 0)
-      return this.phimhots =this.filmService.getFilmHots('phimles');
-    else
-      return this.phimhots;
+  public getPhimLes$(){
+    this.phimles$ = this.filmService.getPhimLes$();
+    this.phimhots$ = this.filmService.getPhimLeHots$();
   }
 
 }

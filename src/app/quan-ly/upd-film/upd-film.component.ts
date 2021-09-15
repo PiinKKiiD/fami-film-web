@@ -26,11 +26,11 @@ export class UpdFilmComponent implements OnInit {
 
   onSubmit(){
     console.log('updating');
-    let newFilm = this.filmService.getFilmFromQuanLy(this.index);
+    /*let newFilm = this.filmService.getFilmFromQuanLy(this.index);
     newFilm.name = this.addForm.value['filmName'];
     newFilm.type = this.addForm.value['filmType'];
     newFilm.note = this.addForm.value['filmNote'];
-    this.filmService.updateFilmToQuanLy(newFilm, this.index);
+    this.filmService.updateFilmToQuanLy(newFilm, this.index);*/
     this.dataStorageService.updateQuanly2DB();
     this.dialogRef.close();
   }
@@ -40,14 +40,14 @@ export class UpdFilmComponent implements OnInit {
   }
 
   private initForm(){
-    let newFilm = this.filmService.getFilmFromQuanLy(this.index);
+    /*let newFilm = this.filmService.getFilmFromQuanLy(this.index);
     let filmName = newFilm.name;
     let filmType = newFilm.type;
-    let filmNote = newFilm.note;
-    this.addForm = new FormGroup({
+    let filmNote = newFilm.note;*/
+    /*this.addForm = new FormGroup({
       'filmName': new FormControl(filmName, Validators.required),
       'filmType': new FormControl(filmType, Validators.required),
       'filmNote': new FormControl(filmNote)
-    });
+    });*/
   }
 }

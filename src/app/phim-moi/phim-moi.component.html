@@ -8,11 +8,11 @@
 
   <div class="row">
     <div class="col-xs-9">
-      <app-film-list [films] = phimmois ></app-film-list>
+      <app-film-list [films$] = phimmois$ ></app-film-list>
     </div>
 
     <div class="col-xs-3" style="width: 300px; margin-left: -50px;">
-      <app-film-hot-list [filmhots]="onGetFilmHots()" ></app-film-hot-list>
+      <app-film-hot-list [filmhots$]="phimhots$" ></app-film-hot-list>
     </div>
   </div>
 </div>
