@@ -1,17 +1,19 @@
 import {FilmModel} from "./film.model";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
+import { map, take, tap} from 'rxjs/operators';
 
 @Injectable()
 export class FilmService{
-
+  quanlys : FilmModel[] = [];
+  quanlys$ : Observable<FilmModel[]>;
   constructor(private http: HttpClient) {
   }
 
   private firebaseStoragePath = 'https://fami-film-default-rtdb.asia-southeast1.firebasedatabase.app/';
 
-  filmsChanged = new Subject<FilmModel[]>();
+  filmsChanged = new Subject<Observable<FilmModel[]>>();
 
   getPhimBos$(){
     return this.http.get<FilmModel[]>(this.firebaseStoragePath +'phimbos.json');
@@ -29,7 +31,23 @@ export class FilmService{
   }
 
   getQuanLys$(){
-    return this.http.get<FilmModel[]>(this.firebaseStoragePath + 'quanlys.json');
+    this.quanlys$ = this.http.get<FilmModel[]>(this.firebaseStoragePath + 'quanlys.json');
+    this.filmsChanged.next(this.quanlys$);
+    this.quanlys$
+      .pipe(
+      map( films =>{
+        return films.map(film =>{
+          return {
+            ...film,
+          }
+        })
+      }),
+      tap(films =>{
+        this.quanlys = films;
+        console.log('get film:', this.quanlys.slice());
+      })
+    );
+    return this.quanlys$
   }
 
   //Quan ly ------------------------------------------------------------:
@@ -52,41 +70,28 @@ export class FilmService{
   // ---------------------------------------------------------------------------------
 
   addFilmToQuanLy(film: FilmModel){
-    /*this.quanlys.push(film);
-    this.filmsChanged.next(this.quanlys.slice());*/
+    this.quanlys.push(film);
+    const qlys = this.quanlys.slice();
+    this.filmsChanged.next(this.quanlys$);
+    console.log('add film to DB');
+    return this.http.put(this.firebaseStoragePath +'quanlys.json',qlys);
   }
 
   updateFilmToQuanLy(film: FilmModel, id: number){
-    /*this.quanlys[id] = film;
-    this.filmsChanged.next(this.quanlys.slice());*/
+    this.quanlys[id] = film;
+    const qlys = this.quanlys.slice();
+    this.filmsChanged.next(this.quanlys$);
+    return this.http.put(this.firebaseStoragePath +'quanlys.json',qlys);
   }
 
   delFilmFromQuanLy(index: number){
-    /*this.quanlys.splice(index,1);
-
-    this.filmsChanged.next(this.quanlys.slice());*/
-    const id = 'quanlys/' +index;
-    /*let httpParams = new HttpParams();
-    httpParams.set('id',index);
-    const option = {params: httpParams}*/
-    this.getQuanLys$().subscribe(
-      quanlys =>{
-        quanlys.splice(index,1);
-        this.http.put(
-          this.firebaseStoragePath+'quanlys.json',
-          quanlys
-        ).subscribe(data => {
-          console.log('deleted');
-          this.filmsChanged.next(quanlys);
-        })
-
-
-      }
-    )
+    this.quanlys.splice(index,1);
+    const qlys = this.quanlys.slice();
+    return this.http.put(this.firebaseStoragePath +'quanlys.json',qlys);
   }
 
   getFilmFromQuanLy(index: number){
-    //return this.quanlys.slice()[index];
+    return this.quanlys.slice()[index];
   }
 
 }

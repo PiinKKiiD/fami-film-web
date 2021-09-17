@@ -25,8 +25,8 @@ export class DelFilmConfirmComponent implements OnInit {
   }
 
   onDelete(){
-    this.filmService.delFilmFromQuanLy(this.index);
-    this.dataStorageService.updateQuanly2DB();
+    this.filmService.delFilmFromQuanLy(this.index).subscribe(res =>{console.log(res)});
+    console.log('deleting ', this.index);
     this.dialogRef.close();
   }
 

@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FilmService} from "../../share/film.service";
-import {DataStorageService} from "../../share/data-storage.service";
 import {FilmModel} from "../../share/film.model";
 
 @Component({
@@ -15,8 +14,7 @@ export class UpdFilmComponent implements OnInit {
   index: number;
   constructor(public dialogRef: MatDialogRef<UpdFilmComponent>,
               @Inject(MAT_DIALOG_DATA) public data: number,
-              private filmService: FilmService,
-              private dataStorageService: DataStorageService) {
+              private filmService: FilmService) {
     this.index = data['index'];
   }
 
@@ -26,12 +24,11 @@ export class UpdFilmComponent implements OnInit {
 
   onSubmit(){
     console.log('updating');
-    /*let newFilm = this.filmService.getFilmFromQuanLy(this.index);
+    let newFilm = this.filmService.getFilmFromQuanLy(this.index);
     newFilm.name = this.addForm.value['filmName'];
     newFilm.type = this.addForm.value['filmType'];
     newFilm.note = this.addForm.value['filmNote'];
-    this.filmService.updateFilmToQuanLy(newFilm, this.index);*/
-    this.dataStorageService.updateQuanly2DB();
+    this.filmService.updateFilmToQuanLy(newFilm, this.index);
     this.dialogRef.close();
   }
   onCancel(){
@@ -40,14 +37,14 @@ export class UpdFilmComponent implements OnInit {
   }
 
   private initForm(){
-    /*let newFilm = this.filmService.getFilmFromQuanLy(this.index);
-    let filmName = newFilm.name;
-    let filmType = newFilm.type;
-    let filmNote = newFilm.note;*/
-    /*this.addForm = new FormGroup({
+    const newFilm: FilmModel = this.filmService.getFilmFromQuanLy(this.index);
+    const filmName = newFilm.name;
+    const filmType = newFilm.type;
+    const filmNote = newFilm.note;
+    this.addForm = new FormGroup({
       'filmName': new FormControl(filmName, Validators.required),
       'filmType': new FormControl(filmType, Validators.required),
       'filmNote': new FormControl(filmNote)
-    });*/
+    });
   }
 }

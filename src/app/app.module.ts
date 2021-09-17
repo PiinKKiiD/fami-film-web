@@ -15,13 +15,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
 import {MatGridListModule} from "@angular/material/grid-list";
-import {HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FilmService} from "./share/film.service";
 import { PlaceholderDirective } from "./share/Placeholder/placeholder.directive";
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {ShareModule} from "./share/share.module";
+import {AppInterceptorService} from "./share/app-interceptor.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,12 @@ import {ShareModule} from "./share/share.module";
     MatInputModule,
     ShareModule,
   ],
-  providers: [FilmService],
+  providers: [FilmService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
