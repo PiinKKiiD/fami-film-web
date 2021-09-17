@@ -2,7 +2,7 @@ import {FilmModel} from "./film.model";
 import {Observable, Subject} from "rxjs";
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import { map, take, tap} from 'rxjs/operators';
+import { map, take, tap, filter} from 'rxjs/operators';
 
 @Injectable()
 export class FilmService{
@@ -31,9 +31,7 @@ export class FilmService{
   }
 
   getQuanLys$(){
-    this.quanlys$ = this.http.get<FilmModel[]>(this.firebaseStoragePath + 'quanlys.json');
-    this.filmsChanged.next(this.quanlys$);
-    this.quanlys$
+    return this.quanlys$ = this.http.get<FilmModel[]>(this.firebaseStoragePath + 'quanlys.json')
       .pipe(
       map( films =>{
         return films.map(film =>{
@@ -44,7 +42,8 @@ export class FilmService{
       }),
       tap(films =>{
         this.quanlys = films;
-        console.log('get film:', this.quanlys.slice());
+        this.filmsChanged.next(this.quanlys$);
+        console.log('get film:', films);
       })
     );
     return this.quanlys$
@@ -72,8 +71,7 @@ export class FilmService{
   addFilmToQuanLy(film: FilmModel){
     this.quanlys.push(film);
     const qlys = this.quanlys.slice();
-    this.filmsChanged.next(this.quanlys$);
-    console.log('add film to DB');
+    this.filmsChanged.next(this.quanlys$.pipe(tap(films =>{films.push(film)})));
     return this.http.put(this.firebaseStoragePath +'quanlys.json',qlys);
   }
 

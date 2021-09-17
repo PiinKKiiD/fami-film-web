@@ -26,7 +26,7 @@ export class QuanLyComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getQuanLys$();
-    this.subscription = this.filmService.filmsChanged.subscribe();
+    this.subscription = this.filmService.filmsChanged.subscribe(obs =>{this.quanlys$ = obs});
 
   }
 
@@ -49,7 +49,7 @@ export class QuanLyComponent implements OnInit, OnDestroy {
     matDialogConf.autoFocus = true;
     matDialogConf.data = {index: id}
     const dialogRef = this.matDialog.open(DelFilmConfirmComponent, matDialogConf);
-    dialogRef.afterClosed().subscribe(() => { console.log('get01'), this.getQuanLys$() } );
+    //dialogRef.afterClosed().subscribe(() => { console.log('get01'), this.getQuanLys$() } );
 
   }
 
